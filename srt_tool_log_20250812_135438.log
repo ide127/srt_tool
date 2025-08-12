@@ -1,0 +1,29 @@
+[2025-08-12 13:54:38] [INFO] 애플리케이션 시작. 프롬프트: 'prompt.txt'
+[2025-08-12 13:54:52] [INFO] 🚀 원클릭 전체 작업 시작 대상: /Users/gonglee/Desktop/Manual Library/code/srtTranslate/2nd_try
+[2025-08-12 13:54:52] [DEBUG] 분리 시작: Dhruv Tara - Samay Sadi Se Pare 0007 Unmix HD_subtitle.srt 경로: /Users/gonglee/Desktop/Manual Library/code/srtTranslate/2nd_try/Dhruv Tara - Samay Sadi Se Pare 0007 Unmix HD_subtitle.srt
+[2025-08-12 13:54:52] [INFO] 번역 처리 중: Dhruv Tara - Samay Sadi Se Pare 0007 Unmix HD_subtitle.txt 모델: gemini-2.5-flash
+[2025-08-12 13:54:53] [ERROR] Gemini CLI 오류: Dhruv Tara - Samay Sadi Se Pare 0007 Unmix HD_subtitle.txt No input provided via stdin.
+[2025-08-12 13:54:53] [DEBUG] 분리 시작: Dhruv Tara - Samay Sadi Se Pare 0024 Unmix HD_subtitle.srt 경로: /Users/gonglee/Desktop/Manual Library/code/srtTranslate/2nd_try/Dhruv Tara - Samay Sadi Se Pare 0024 Unmix HD_subtitle.srt
+[2025-08-12 13:54:54] [INFO] 번역 처리 중: Dhruv Tara - Samay Sadi Se Pare 0024 Unmix HD_subtitle.txt 모델: gemini-2.5-flash
+[2025-08-12 13:54:54] [ERROR] Gemini CLI 오류: Dhruv Tara - Samay Sadi Se Pare 0024 Unmix HD_subtitle.txt No input provided via stdin.
+[2025-08-12 13:54:54] [DEBUG] 분리 시작: Dhruv Tara - Samay Sadi Se Pare 0085 Unmix HD_subtitle.srt 경로: /Users/gonglee/Desktop/Manual Library/code/srtTranslate/2nd_try/Dhruv Tara - Samay Sadi Se Pare 0085 Unmix HD_subtitle.srt
+[2025-08-12 13:54:54] [INFO] 번역 처리 중: Dhruv Tara - Samay Sadi Se Pare 0085 Unmix HD_subtitle.txt 모델: gemini-2.5-flash
+[2025-08-12 13:54:54] [ERROR] Gemini CLI 오류: Dhruv Tara - Samay Sadi Se Pare 0085 Unmix HD_subtitle.txt No input provided via stdin.
+[2025-08-12 13:54:55] [DEBUG] 분리 시작: Dhruv Tara - Samay Sadi Se Pare 0176 Unmix HD_subtitle.srt 경로: /Users/gonglee/Desktop/Manual Library/code/srtTranslate/2nd_try/Dhruv Tara - Samay Sadi Se Pare 0176 Unmix HD_subtitle.srt
+[2025-08-12 13:54:55] [INFO] 번역 처리 중: Dhruv Tara - Samay Sadi Se Pare 0176 Unmix HD_subtitle.txt 모델: gemini-2.5-flash
+[2025-08-12 13:54:55] [ERROR] Gemini CLI 오류: Dhruv Tara - Samay Sadi Se Pare 0176 Unmix HD_subtitle.txt No input provided via stdin.
+[2025-08-12 13:54:55] [DEBUG] 분리 시작: Dhruv Tara - Samay Sadi Se Pare 0206 Unmix HD_subtitle.srt 경로: /Users/gonglee/Desktop/Manual Library/code/srtTranslate/2nd_try/Dhruv Tara - Samay Sadi Se Pare 0206 Unmix HD_subtitle.srt
+[2025-08-12 13:54:55] [INFO] 번역 처리 중: Dhruv Tara - Samay Sadi Se Pare 0206 Unmix HD_subtitle.txt 모델: gemini-2.5-flash
+[2025-08-12 13:54:55] [ERROR] Gemini CLI 오류: Dhruv Tara - Samay Sadi Se Pare 0206 Unmix HD_subtitle.txt No input provided via stdin.
+[2025-08-12 13:54:56] [DEBUG] 분리 시작: Dhruv Tara - Samay Sadi Se Pare 0207 Unmix HD_subtitle.srt 경로: /Users/gonglee/Desktop/Manual Library/code/srtTranslate/2nd_try/Dhruv Tara - Samay Sadi Se Pare 0207 Unmix HD_subtitle.srt
+[2025-08-12 13:54:56] [INFO] 번역 처리 중: Dhruv Tara - Samay Sadi Se Pare 0207 Unmix HD_subtitle.txt 모델: gemini-2.5-flash
+[2025-08-12 13:54:56] [ERROR] Gemini CLI 오류: Dhruv Tara - Samay Sadi Se Pare 0207 Unmix HD_subtitle.txt No input provided via stdin.
+[2025-08-12 13:54:56] [DEBUG] 분리 시작: Dhruv Tara - Samay Sadi Se Pare 0263 Unmix HD_subtitle.srt 경로: /Users/gonglee/Desktop/Manual Library/code/srtTranslate/2nd_try/Dhruv Tara - Samay Sadi Se Pare 0263 Unmix HD_subtitle.srt
+[2025-08-12 13:54:56] [INFO] 번역 처리 중: Dhruv Tara - Samay Sadi Se Pare 0263 Unmix HD_subtitle.txt 모델: gemini-2.5-flash
+[2025-08-12 13:54:57] [ERROR] Gemini CLI 오류: Dhruv Tara - Samay Sadi Se Pare 0263 Unmix HD_subtitle.txt No input provided via stdin.
+[2025-08-12 13:54:57] [DEBUG] 분리 시작: Dhruv Tara - Samay Sadi Se Pare 0269 Unmix HD_subtitle.srt 경로: /Users/gonglee/Desktop/Manual Library/code/srtTranslate/2nd_try/Dhruv Tara - Samay Sadi Se Pare 0269 Unmix HD_subtitle.srt
+[2025-08-12 13:54:57] [INFO] 번역 처리 중: Dhruv Tara - Samay Sadi Se Pare 0269 Unmix HD_subtitle.txt 모델: gemini-2.5-flash
+[2025-08-12 13:54:57] [ERROR] Gemini CLI 오류: Dhruv Tara - Samay Sadi Se Pare 0269 Unmix HD_subtitle.txt No input provided via stdin.
+[2025-08-12 13:54:58] [DEBUG] 분리 시작: Dhruv Tara - Samay Sadi Se Pare 0406 Unmix HD_subtitle.srt 경로: /Users/gonglee/Desktop/Manual Library/code/srtTranslate/2nd_try/Dhruv Tara - Samay Sadi Se Pare 0406 Unmix HD_subtitle.srt
+[2025-08-12 13:54:58] [INFO] 번역 처리 중: Dhruv Tara - Samay Sadi Se Pare 0406 Unmix HD_subtitle.txt 모델: gemini-2.5-flash
+[2025-08-12 13:54:58] [ERROR] Gemini CLI 오류: Dhruv Tara - Samay Sadi Se Pare 0406 Unmix HD_subtitle.txt No input provided via stdin.
