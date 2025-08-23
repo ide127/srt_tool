@@ -9,10 +9,10 @@ This guide provides instructions on how to package the SRT Tool into a standalon
 
 ## 1. Install PyInstaller
 
-Open your terminal (Command Prompt on Windows, Terminal on macOS) and run the following command:
+Open your terminal (Command Prompt on Windows, Terminal on macOS) and run the following command to install the required libraries:
 
 ```bash
-pip install pyinstaller
+pip install pyinstaller ttkbootstrap
 ```
 
 ## 2. Prepare for Build
