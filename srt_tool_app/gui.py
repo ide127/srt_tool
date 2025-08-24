@@ -104,7 +104,14 @@ class SrtToolApp(tb.Window):
         tab = tb.Frame(self.notebook, padding="10")
         self.notebook.add(tab, text="5. 원클릭 전체 작업")
         tb.Label(tab, text="폴더를 선택하면 각 SRT 파일에 대해 [분리 → 번역 → 병합] 전 과정을 자동으로 처리합니다.", wraplength=400).pack(pady=(0, 10), anchor="w")
+
         self._create_policy_selection_ui(tab).pack(pady=5, anchor='w')
+
+        # Add the merge policy checkbox here as well
+        cb = tb.Checkbutton(tab, text="두 줄 이상 자막 자동 분리 (병합 시 적용)", variable=self.split_multi_line_var, bootstyle="primary")
+        cb.pack(anchor="w", pady=5, padx=5)
+        self.ui_elements.append(cb)
+
         tb.Label(tab, text="참고: 시간 조절이 필요하면 '3. 시간 일괄 조절' 탭에서 미리 실행하세요.", foreground="blue").pack(pady=(0, 10), anchor="w")
         btn = tb.Button(tab, text="SRT 파일이 있는 폴더 선택", command=self.run_one_click_wrapper, bootstyle="primary")
         btn.pack(pady=10, ipady=5, anchor="w")
