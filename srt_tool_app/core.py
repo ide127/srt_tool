@@ -103,10 +103,10 @@ def _translate_single_file(txt_path, instruction_prompt, log_queue):
     log_queue.put((f"번역 최종 실패: 모든 모델({', '.join(models_to_try)}) 시도 후에도 형식이 올바르지 않음. ({filename})", "ERROR", False))
     return False
 
-def _merge_single_srt(time_file_path, sentence_file_path, output_srt_path, log_queue):
+def _merge_single_srt(time_file_path, sentence_file_path, output_srt_path, log_queue, split_multi_line=True):
     """
     단일 자막 파일을 병합합니다.
-    두 줄 이상의 자막은 길이에 비례하여 시간을 나누고 번호를 다시 매깁니다.
+    split_multi_line 정책에 따라 두 줄 이상의 자막을 처리합니다.
     """
     filename = os.path.basename(output_srt_path)
     try:
@@ -141,16 +141,14 @@ def _merge_single_srt(time_file_path, sentence_file_path, output_srt_path, log_q
             if not text_lines:
                 continue
 
-            if len(text_lines) == 1:
-                srt_output.append(f"{new_block_counter}\n{time_line}\n{text_lines[0]}\n")
-                new_block_counter += 1
-            else:
+            # 정책에 따라 분기
+            if split_multi_line and len(text_lines) > 1:
+                # 복잡한 경우: 여러 줄 자막 분리
                 try:
                     start_time_str, end_time_str = time_line.split(" --> ")
                     start_td = utils._time_str_to_timedelta(start_time_str)
                     end_td = utils._time_str_to_timedelta(end_time_str)
                     total_duration_td = end_td - start_td
-
                     total_len = sum(len(line) for line in text_lines)
                     if total_len == 0: continue
 
@@ -159,14 +157,10 @@ def _merge_single_srt(time_file_path, sentence_file_path, output_srt_path, log_q
                         line_len = len(line)
                         proportion = line_len / total_len
                         line_duration_td = total_duration_td * proportion
-
                         line_end_td = current_start_td + line_duration_td
-                        if i == len(text_lines) - 1:
-                            line_end_td = end_td
-
+                        if i == len(text_lines) - 1: line_end_td = end_td
                         new_start_str = utils._timedelta_to_time_str(current_start_td)
                         new_end_str = utils._timedelta_to_time_str(line_end_td)
-
                         srt_output.append(f"{new_block_counter}\n{new_start_str} --> {new_end_str}\n{line}\n")
                         new_block_counter += 1
                         current_start_td = line_end_td
@@ -174,6 +168,11 @@ def _merge_single_srt(time_file_path, sentence_file_path, output_srt_path, log_q
                     log_queue.put((f"자막 시간 분배 중 오류 ({filename}, 블록: {original_number}): {e}", "ERROR", False))
                     srt_output.append(f"{new_block_counter}\n{time_line}\n{'\n'.join(text_lines)}\n")
                     new_block_counter += 1
+            else:
+                # 간단한 경우: 한 줄 자막 또는 분리 안 함 정책
+                joined_text = "\n".join(text_lines)
+                srt_output.append(f"{new_block_counter}\n{time_line}\n{joined_text}\n")
+                new_block_counter += 1
 
         with open(output_srt_path, "w", encoding="utf-8") as f:
             f.write("\n".join(srt_output))
