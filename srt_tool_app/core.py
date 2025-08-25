@@ -75,7 +75,10 @@ def _translate_single_file(txt_path, instruction_prompt, log_queue):
 
             lines = stdout.strip().split("\n")
             filtered_lines = [
-                line for line in lines if "Loaded cached credentials." not in line
+                line
+                for line in lines
+                if "Loaded cached credentials." not in line
+                and "Data collection is disabled." not in line
             ]
             translated_content = "\n".join(filtered_lines)
 
