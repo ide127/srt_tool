@@ -1,74 +1,74 @@
-# How to Build the SRT Tool Executable
+# How to Build and Run the SRT Tool
 
-This guide provides instructions on how to package the SRT Tool into a standalone executable for Windows and macOS using `PyInstaller`.
+This guide provides instructions for setting up the environment and building a standalone executable for the SRT Tool.
 
-## Prerequisites
+**IMPORTANT:** This application uses OpenAI's Whisper for audio transcription. For optimal performance, GPU acceleration is highly recommended. The following instructions include steps for setting up an AMD GPU on a WSL/Ubuntu environment.
 
--   Python 3.x installed on your system.
--   `pip` (the Python package installer) available in your command line or terminal.
+## 1. Install Dependencies
 
-## 1. Install PyInstaller
+Open your WSL/Ubuntu terminal.
 
-Open your terminal (Command Prompt on Windows, Terminal on macOS) and run the following command to install the required libraries:
-
+### 1.1 Install System Dependencies
+First, update your package lists and install `ffmpeg`, which is required by Whisper to process audio from video files.
 ```bash
-pip install pyinstaller ttkbootstrap
+sudo apt update && sudo apt upgrade
+sudo apt install ffmpeg
 ```
 
-## 2. Prepare for Build
-
-Make sure the following files are in the same directory:
--   `srt_tool.py`
--   `prompt.txt`
-
-Optionally, you can add an application icon file:
--   For Windows: an `.ico` file (e.g., `icon.ico`)
--   For macOS: an `.icns` file (e.g., `icon.icns`)
-
-## 3. Build the Executable
-
-Navigate to the directory containing the script in your terminal.
-
-### For Windows
-
-Run the following command:
-
+### 1.2 Install Python Dependencies with `pip`
+It is recommended to use a virtual environment. Once activated, install the required Python libraries:
 ```bash
-pyinstaller --name "SRT_Tool" ^
-            --onefile ^
-            --windowed ^
-            --add-data "prompt.txt:." ^
-            --icon="icon.ico" ^
-            srt_tool.py
+pip install openai-whisper ttkbootstrap torch torchvision torchaudio --index-url https://download.pytorch.org/whl/rocm5.7
+pip install pyinstaller srt
+```
+**Note on `srt`:** This library is used for robust parsing of SRT files.
+**Note on PyTorch:** The `--index-url` for PyTorch is crucial for installing a version compatible with AMD's ROCm. Ensure your ROCm version matches (e.g., `rocm5.7`).
+
+## 2. Setting up AMD GPU Acceleration (ROCm on WSL)
+This is a complex process. Follow these steps carefully.
+
+### 2.1 Install AMD GPU Drivers on Windows
+Ensure you have the latest official AMD Adrenalin drivers installed on your Windows 11 host.
+
+### 2.2 Install ROCm in WSL
+Follow the official AMD guide for installing the ROCm toolchain on Linux. A typical installation command would be:
+```bash
+sudo apt install rocm-dkms
+```
+This can be a lengthy and complex process. Refer to AMD's official documentation for the most up-to-date instructions for your specific GPU and Ubuntu version.
+
+### 2.3 Add User to Render/Video Groups
+Your WSL user needs permission to access the GPU hardware.
+```bash
+sudo usermod -a -G render,video $USER
+```
+You will need to close and reopen your WSL terminal for this to take effect.
+
+### 2.4 Verify Installation
+You can verify that PyTorch can see your GPU by running the following in Python:
+```python
+import torch
+print(torch.cuda.is_available())
+# Should print True
+print(torch.cuda.get_device_name(0))
+# Should print your AMD GPU name
 ```
 
--   `--name`: Sets the name of your final executable.
--   `--onefile`: Bundles everything into a single `.exe` file.
--   `--windowed`: Prevents the black console window from appearing when you run the app.
--   `--add-data "prompt.txt:."`: Ensures `prompt.txt` is included in the package. The `:.` part means it will be placed in the root of the package, where the script can find it.
--   `--icon`: (Optional) Adds your custom icon to the executable.
+## 3. How to Run the Application
+Once all dependencies are installed, you can run the application directly from the source code:
+```bash
+python srt_tool.py
+```
 
-### For macOS
-
-Run the following command:
+## 4. How to Build an Executable (Optional)
+Navigate to the project's root directory in your terminal.
 
 ```bash
-pyinstaller --name "SRT_Tool" \
+pyinstaller --name "SRT_Sync_Tool" \
             --onefile \
             --windowed \
-            --add-data "prompt.txt:." \
-            --icon="icon.icns" \
-            --osx-bundle-identifier "com.yourname.srttool" \
+            --add-data "config.py:." \
+            --add-data "prompts.py:." \
             srt_tool.py
 ```
-
--   The flags are similar to Windows.
--   `--osx-bundle-identifier`: (Optional but recommended) Sets a unique bundle identifier for the application on macOS.
-
-## 4. Find Your Application
-
-After the build process completes, you will find a `dist` folder. Inside this folder, you will find:
--   On Windows: `SRT_Tool.exe`
--   On macOS: `SRT_Tool.app`
-
-This is your standalone application that can be shared and run on other computers without needing Python installed.
+This creates a single `.exe` file in the `dist` folder. Note that for GPU acceleration to work, the target machine must also have the correct AMD drivers and ROCm environment installed. Building a truly portable GPU-accelerated application is highly complex.
